@@ -13,36 +13,37 @@ Guacamole是一个提供了基于HTML5 web应用程序的远程桌面代理服�
 1、安装必要环境
 这些必要的环境主要是指编译Guacamole Server时所需要的工具及其依赖项所需要的软件源。
 
-yum -y install epel-release
-rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
-rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm
-yum update -y
-yum -y install wget
-yum -y groupinstall "Development Tools"
+#yum -y install epel-release
+#rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+#rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm
+#yum update -y
+#yum -y install wget
+#yum -y groupinstall "Development Tools"
 
 2、安装依赖项
 我安装的依赖项包括必须安装的依赖项和可选依赖项的全部
-yum -y install cairo-devel libjpeg-turbo-devel libpng-devel uuid-devel freerdp-devel pango-devel libssh2-devel libtelnet-devel libvncserver-devel pulseaudio-libs-devel openssl-devel libvorbis-devel libwebp-devel ffmpeg-devel 
+#yum -y install cairo-devel libjpeg-turbo-devel libpng-devel uuid-devel freerdp-devel pango-devel libssh2-devel libtelnet-devel libvncserver-devel pulseaudio-libs-devel openssl-devel libvorbis-devel libwebp-devel ffmpeg-devel 
 
 3、获取、编译和安装Guacamole Server
-cd /tmp
-tar xzvf guacamole-server-0.9.13-incubating.tar.gz
-cd guacamole-server-0.9.13-incubating
-autoreconf -fi
-./configure --with-init-dir=/etc/init.d
-make
-make install
-ldconfig
+#cd /tmp
+#tar xzvf guacamole-server-0.9.13-incubating.tar.gz
+#cd guacamole-server-0.9.13-incubating
+#autoreconf -fi
+#./configure --with-init-dir=/etc/init.d
+#make
+#make install
+#ldconfig
+
 Configure  一定要通过  guacd 是后台服务   guacenc 是解码录像文件
  
 
 4、启动guacd
-service guacd start
+#service guacd start
 三、Guacamole Client安装
 Guacamole Client的安装其实是相当简单的主要就是安装支持Java的Web服务器和Guacamole Client war包。
-yum -y install java-1.8.0-openjdk tomcat
-cd /tmp
-cp guacamole-0.9.13-incubating.war /var/lib/tomcat/webapps/guacamole.war
+#yum -y install java-1.8.0-openjdk tomcat
+#cd /tmp
+#cp guacamole-0.9.13-incubating.war /var/lib/tomcat/webapps/guacamole.war
 
 四、Guacamole配置
 Guacamole默认从其自己的配置文件目录中读取配置文件，仅在找不到配置文件的情况下才会使用类路径。Guacamole查找配置文件的目录的顺序如下：
@@ -97,21 +98,21 @@ user-mapping: /etc/guacamole/user-mapping.xml
 
 Gucamole配置具体操作如下：
 1、创建GUACAMOLE_HOME和配置文件
-mkdir /etc/guacamole
-mkdir /etc/guacamole/lib
-mkdir /etc/guacamole/extensions
-vim /etc/guacamole/guacamole.properties
-vim /etc/guacamole/user-mapping.xml
+#mkdir /etc/guacamole
+#mkdir /etc/guacamole/lib
+#mkdir /etc/guacamole/extensions
+#vim /etc/guacamole/guacamole.properties
+#vim /etc/guacamole/user-mapping.xml
 
 2、配置Guacamole
-mkdir /user/shares/tomcat/.guacamole
-ln -s /etc/guacamole/guacamole.properties /user/shares/tomcat/.guacamole
+#mkdir /user/shares/tomcat/.guacamole
+#ln -s /etc/guacamole/guacamole.properties /user/shares/tomcat/.guacamole
 
-chmod -R 777 /etc/guacamole
+#chmod -R 777 /etc/guacamole
 
-firewall-cmd --zone=public --add-port=8080/tcp --permanent
-firewall-cmd --reload
-service tomcat start
+#firewall-cmd --zone=public --add-port=8080/tcp --permanent
+#firewall-cmd --reload
+#service tomcat start
 
 
 五、测试
