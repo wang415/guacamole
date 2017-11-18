@@ -134,10 +134,10 @@ Ubuntu x11vnc
 Guacamole对RDP、VNC以及SSH支持还是比较完美的。我仅仅简单地测试了RDP、VNC和SSH三种协议以及一些比较简单的功能。在后期的文章中将会详细介绍连接参数、常见错误分析以及其他验证方式。
 MySQL 连接配置
 1、创建GUACAMOLE_HOME和配置文件
-mkdir /etc/guacamole
-mkdir /etc/guacamole/lib
-mkdir /etc/guacamole/extensions
-vim /etc/guacamole/guacamole.properties
+#mkdir /etc/guacamole
+#mkdir /etc/guacamole/lib
+#mkdir /etc/guacamole/extensions
+#vim /etc/guacamole/guacamole.properties
 
 
 2、配置cp guacamole-auth 文件
